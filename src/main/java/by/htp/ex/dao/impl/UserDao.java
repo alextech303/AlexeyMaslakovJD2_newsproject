@@ -22,31 +22,25 @@ import by.htp.ex.util.validation.ValidationProvider;
 
 public class UserDao implements IUserDao {
 
-	private final static Logger LOG = LogManager.getLogger(DoSignIn.class);
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDao.class);
 	private final UserDataValidation validationUser = ValidationProvider.getInstance().getUserDataVelidation();
-	private boolean checkUser = true;
+	private boolean checkUser = false;
 
 	@Override
 	public boolean logination(String login, String password) throws DaoException {
 		try {
-			if (validationUser.checkAuthUser(login, password))
-				LOG.info("Пользователь " + login + " успешно прошел регистрацию!!!");
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			if (validationUser.checkAuthUser(login, password)) {
 
-		try {
-			if (!validationUser.checkAuthUser(login, password)) {
+				checkUser = true;
+			} else {
 				LOG.info("Пользователь " + login + " не прошел логинацию!!!");
-
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
-		return true;
+		return checkUser;
 	}
 
 //		
@@ -81,33 +75,7 @@ public class UserDao implements IUserDao {
 	@Override
 	public String getRole(String login) throws DaoException {
 
-		return login;
-	}
+		return "ddd";
 
-//	@Override
-//	public boolean logination(String login, String password) throws DaoException {
-//		
-//		if(login.equals(loginUser.findUser(login)) & password.equals(loginUser.findPassword(password))) {
-//			loginUser.count = 0;
-//					
-//			return true;
-//		}else {
-//			loginUser.count = 0;
-//			return false;
-//		}
-//	}
-////	
-//	@Override
-//		public String getRole(String login) {
-//		
-//		
-//		return roleOfUser.get(login);
-////	}
-////
-////	@Override
-////	public boolean registration(NewUserInfo user) throws DaoException  {
-////		// TODO Auto-generated method stub
-////		return true;
-////	}
-
+}
 }

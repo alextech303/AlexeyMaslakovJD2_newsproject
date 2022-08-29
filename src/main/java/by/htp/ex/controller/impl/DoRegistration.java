@@ -54,6 +54,7 @@ public class DoRegistration implements Command {
 		} catch (DaoException e) {
 			LOG.debug(e);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			LOG.error("произошла ошибка",e);
 		} catch (IOException e) {
 			LOG.error(e);

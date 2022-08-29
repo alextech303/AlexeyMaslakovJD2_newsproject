@@ -31,7 +31,6 @@ public class DoSignIn implements Command {
 	private static final String JSP_PASSWORD_PARAM = "password";
 
 	private final IUserService service = ServiceProvider.getInstance().getUserService();
-	
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,71 +41,34 @@ public class DoSignIn implements Command {
 		login = request.getParameter(JSP_LOGIN_PARAM);
 		password = request.getParameter(JSP_PASSWORD_PARAM);
 		
-//		try {
-			//
-						boolean result = service.logination(login, password);
-			//
-//						if (result) {
-//							// go to main.jsp
-//						} else {
-//							// go to index-logination with message
-//						}
-			//
-//					} catch (ServiceException e) {
-//						// logging e
-//						// go-to error page
-			//
-//					}
+			try {
+				String role = service.signIn(login, password);
+			
+			
+			switch(role) {
 		
-		
+			case "user":
+				request.getSession(true).setAttribute("user", "active");
+				request.getSession(true).setAttribute("role", role);
+				response.sendRedirect("controller?command=go_to_news_list");
+				break;
+				
+			case "admin":
+				request.getSession(true).setAttribute("user", "active");
+				request.getSession(true).setAttribute("role", role);
+				request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp").forward(request, response);
+				break;
+				
+			case "guest":
+				
+				request.getSession(true).setAttribute("user", "not active");
+				request.setAttribute("AuthenticationError", "wrong login or password");
+				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+			}
 
-	}
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+
 }
-
-
-//			try {
-//				String role = service.signIn(login, password);
-//			
-//			
-//			switch(role) {
-////			
-//			case "liginationUser":
-//				request.getSession(true).setAttribute("user", "active");
-//				request.getSession(true).setAttribute("role", role);
-//				response.sendRedirect("controller?command=go_to_news_list");
-////				break;
-//////				
-//			case "admin":
-//				request.getSession(true).setAttribute("user", "active");
-//				request.getSession(true).setAttribute("role", role);
-//				response.sendRedirect("controller?command=go_to_news_list");
-//				break;
-//				
-//			case "guest":
-//				
-//				request.getSession(true).setAttribute("user", "not active");
-//				request.setAttribute("AuthenticationError", "wrong login or password");
-//				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
-//			}
-////
-//			}catch (Exception e) {
-//				// TODO: handle exception
-//			}
-
-//			
-//			
-//		} catch (ServiceException e) {
-//			// logging e
-//			// go-to error page
-//
-
-// response.getWriter().print("do logination");
-
-//		login = request.getParameter("login");
-//		password = request.getParameter("password");
-//
-//		// small validation
-//
-//		
-
-// response.getWriter().print("do logination");
+}
