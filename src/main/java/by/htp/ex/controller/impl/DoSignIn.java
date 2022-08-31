@@ -64,6 +64,7 @@ public class DoSignIn implements Command {
 				request.getSession(true).setAttribute("user", "not active");
 				request.setAttribute("AuthenticationError", "wrong login or password");
 				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+				break;
 			}
 
 			}catch (Exception e) {

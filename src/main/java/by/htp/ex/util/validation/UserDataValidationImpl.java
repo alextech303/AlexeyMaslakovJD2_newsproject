@@ -91,13 +91,15 @@ public class UserDataValidationImpl implements UserDataValidation {
 				if (((login).equals(rs.getString(2))) | rs.getString(4).equals(email)) {
 					checkUserInBD = false;
 					if ((login).equals(rs.getString(2))) {
-						LOG.debug("пользователь не прошел регистрацию",
+						LOG.debug("пользователь не прошел регистрацию");
 								new DaoException("В базе пользователь с таким логином " + login
-										+ " существует - используйте другой логин"));
-					} else if (rs.getString(4).equals(email)) {
-						LOG.debug("пользователь не прошел регистрацию",
+										+ " существует - используйте другой логин");
+					}
+					
+					if (rs.getString(4).equals(email)) {
+						LOG.debug("пользователь не прошел регистрацию");
 								new DaoException("В базе пользователь с таким email " + email
-										+ " существует - используйте другой email"));
+										+ " существует - используйте другой email");
 					}
 				}
 			}

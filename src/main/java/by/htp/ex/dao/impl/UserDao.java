@@ -24,14 +24,14 @@ public class UserDao implements IUserDao {
 
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDao.class);
 	private final UserDataValidation validationUser = ValidationProvider.getInstance().getUserDataVelidation();
-	private boolean checkUser = false;
-
+	private boolean checkUserlog = false;
+	private boolean checkUserReg = false;
 	@Override
 	public boolean logination(String login, String password) throws DaoException {
 		try {
 			if (validationUser.checkAuthUser(login, password)) {
 
-				checkUser = true;
+				checkUserlog = true;
 			} else {
 				LOG.info("Пользователь " + login + " не прошел логинацию!!!");
 			}
@@ -40,7 +40,7 @@ public class UserDao implements IUserDao {
 			LOG.error(e);
 		}
 
-		return checkUser;
+		return checkUserlog;
 	}
 
 //		
@@ -49,6 +49,7 @@ public class UserDao implements IUserDao {
 	public boolean registration(NewUserInfo user) throws DaoException, SQLException {
 
 		if (validationUser.checkUserInBD(user.getLogin(), user.getEmail())) {
+			checkUserReg = true;
 			try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 
 				String sql = "INSERT INTO users(login,password,email,dateOfRegistration,roles_id) VALUES(?,?,?,?,?)";
@@ -66,10 +67,10 @@ public class UserDao implements IUserDao {
 				LOG.error("Пользователь не внесен в базу", e);
 			}
 
-		} else {
-			return !checkUser;
-		}
-		return checkUser;
+		} else 
+			return checkUserReg;
+		
+		return checkUserReg;
 	}
 
 	@Override
