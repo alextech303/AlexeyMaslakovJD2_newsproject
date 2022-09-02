@@ -1,4 +1,4 @@
-package by.htp.ex.util.validation;
+package by.htp.ex.dao;
 
 import java.sql.SQLException;
 

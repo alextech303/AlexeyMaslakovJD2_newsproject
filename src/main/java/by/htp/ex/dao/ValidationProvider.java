@@ -1,6 +1,6 @@
-package by.htp.ex.util.validation;
+package by.htp.ex.dao;
 
-import by.htp.ex.dao.DaoProvider;
+import by.htp.ex.dao.impl.UserDataValidationImpl;
 
 public class ValidationProvider {
 	

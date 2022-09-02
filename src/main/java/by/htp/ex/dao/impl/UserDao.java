@@ -15,10 +15,10 @@ import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.controller.impl.DoSignIn;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.IUserDao;
+import by.htp.ex.dao.UserDataValidation;
+import by.htp.ex.dao.ValidationProvider;
 import by.htp.ex.dao.poolConnection.ConnectionPool;
 import by.htp.ex.dao.poolConnection.ConnectionPoolException;
-import by.htp.ex.util.validation.UserDataValidation;
-import by.htp.ex.util.validation.ValidationProvider;
 
 public class UserDao implements IUserDao {
 
@@ -64,7 +64,7 @@ public class UserDao implements IUserDao {
 				ps.executeUpdate();
 
 			} catch (ConnectionPoolException e) {
-				LOG.error("Пользователь не внесен в базу", e);
+				LOG.error("Соединение с БД отсутствует",e);
 			}
 
 		} else 

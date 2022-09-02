@@ -1,4 +1,4 @@
-package by.htp.ex.util.validation;
+package by.htp.ex.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,11 +10,13 @@ import org.apache.logging.log4j.Logger;
 
 import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.dao.DaoException;
+import by.htp.ex.dao.UserDataValidation;
 import by.htp.ex.dao.poolConnection.ConnectionPool;
 import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 
 public class UserDataValidationImpl implements UserDataValidation {
-	private final static Logger LOG = LogManager.getLogger(by.htp.ex.util.validation.UserDataValidationImpl.class);
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDataValidationImpl.class);
+	
 
 	Statement st = null;
 	ResultSet rs = null;

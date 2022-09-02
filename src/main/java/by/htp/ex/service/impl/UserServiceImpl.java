@@ -6,11 +6,11 @@ import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.DaoProvider;
 import by.htp.ex.dao.IUserDao;
+import by.htp.ex.dao.UserDataValidation;
+import by.htp.ex.dao.ValidationProvider;
 import by.htp.ex.dao.impl.UserDao;
 import by.htp.ex.service.ServiceException;
 import by.htp.ex.service.IUserService;
-import by.htp.ex.util.validation.UserDataValidation;
-import by.htp.ex.util.validation.ValidationProvider;
 
 public class UserServiceImpl implements IUserService {
 
