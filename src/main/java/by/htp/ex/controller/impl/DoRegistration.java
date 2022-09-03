@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.htp.ex.bean.CryptPassword;
 import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.controller.Command;
 import by.htp.ex.dao.DaoException;
@@ -24,15 +25,19 @@ public class DoRegistration implements Command {
 	private static final String JSP_PASSWORD_PARAM = "password";
 	private static final String JSP_EMAIL_PARAM = "email";
 	private static NewUserInfo newUserInfo;
+	CryptPassword cryptPassword;
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login;
 		String password;
 		String email;
-
+		
+		CryptPassword cryptPassword =new CryptPassword(request.getParameter(JSP_PASSWORD_PARAM));
 		
 		login = request.getParameter(JSP_LOGIN_PARAM);
-		password = request.getParameter(JSP_PASSWORD_PARAM);
+		
+		password = cryptPassword.toString() ;
+
 		email = request.getParameter(JSP_EMAIL_PARAM);
 		
 		newUserInfo = new NewUserInfo(login,password,email);

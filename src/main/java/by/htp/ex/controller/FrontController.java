@@ -1,6 +1,8 @@
 package by.htp.ex.controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import by.htp.ex.dao.poolConnection.ConnectionPool;
 import by.htp.ex.dao.poolConnection.ConnectionPoolException;
@@ -48,14 +50,19 @@ public class FrontController extends HttpServlet {
 	}
 	
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+			throws IOException, ServletException{
 		
 //		request.getSession(true).setAttribute("local","en");
 		
 		String commandName = request.getParameter("command");
 
 		Command command = provider.getCommand(commandName);
-		command.execute(request, response);
+		try {
+			command.execute(request, response);
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException | ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 //		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
