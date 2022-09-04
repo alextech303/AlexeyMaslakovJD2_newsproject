@@ -25,6 +25,7 @@ public class CommandProvider {
 		commands.put(CommandName.DO_SIGN_OUT, new DoSignOut());
 		commands.put(CommandName.GO_TO_NEWS_LIST, new GoToNewsList());
 		commands.put(CommandName.GO_TO_VIEW_NEWS, new GoToViewNews());
+		System.out.println("CommandProvider() конструктор");
 	}
 	
 	

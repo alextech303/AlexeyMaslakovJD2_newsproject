@@ -7,10 +7,10 @@ import by.htp.ex.dao.DaoException;
 
 public interface IUserService {
 	
-	String signIn(String login, String password) throws ServiceException;
+	String signIn(NewUserInfo user) throws ServiceException;
 	
 	boolean registration(NewUserInfo user) throws ServiceException, DaoException, SQLException;
 
-	boolean logination(String login, String password);
+	
 
 }

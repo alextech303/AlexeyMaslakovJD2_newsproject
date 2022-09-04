@@ -53,6 +53,7 @@ public class FrontController extends HttpServlet {
 			throws IOException, ServletException{
 		
 //		request.getSession(true).setAttribute("local","en");
+		System.out.println("processRequest");
 		
 		String commandName = request.getParameter("command");
 
@@ -60,7 +61,7 @@ public class FrontController extends HttpServlet {
 		try {
 			command.execute(request, response);
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException | ServletException | IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

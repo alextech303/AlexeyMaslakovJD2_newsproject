@@ -24,15 +24,16 @@ public class DoRegistration implements Command {
 	private static final String JSP_LOGIN_PARAM = "login";
 	private static final String JSP_PASSWORD_PARAM = "password";
 	private static final String JSP_EMAIL_PARAM = "email";
-	private static NewUserInfo newUserInfo;
-	CryptPassword cryptPassword;
+	public NewUserInfo newUserInfo;
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("execute DoRegistration");
 		String login;
 		String password;
 		String email;
 		
-		CryptPassword cryptPassword =new CryptPassword(request.getParameter(JSP_PASSWORD_PARAM));
+		CryptPassword cryptPassword = new CryptPassword(request.getParameter(JSP_PASSWORD_PARAM));
 		
 		login = request.getParameter(JSP_LOGIN_PARAM);
 		
@@ -43,10 +44,11 @@ public class DoRegistration implements Command {
 		newUserInfo = new NewUserInfo(login,password,email);
 		try {
 			if(service.registration(newUserInfo)) {
-				LOG.info("Пользователь  "+newUserInfo.getLogin()+" успешно зарегистрирован!!!");
-				request.getSession(true).setAttribute("user","active");
 				
+				request.getSession(true).setAttribute("user","active");
+				request.getSession().setAttribute("login",login);
 				response.sendRedirect("controller?command=go_to_news_list");
+				LOG.info("Пользователь  "+newUserInfo.getLogin()+" успешно зарегистрирован!!!");
 			}else {
 				LOG.info("Пользователь "+newUserInfo.getLogin()+"не прошел регистрацию!!!");
 				request.getSession(true).setAttribute("user","not active");

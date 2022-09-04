@@ -9,9 +9,11 @@ public interface IUserDao {
 	
 //	String signIn(String login, String password) throws DaoException;
 	
-	boolean logination(String login, String password) throws DaoException, SQLException;
+	boolean logination(NewUserInfo user) throws DaoException, SQLException;
+	
 	boolean registration(NewUserInfo user) throws DaoException, SQLException;
-	public String getRole(String login) throws DaoException;
+	
+	public String getRole(String login) throws DaoException, SQLException;
 	
 
 }

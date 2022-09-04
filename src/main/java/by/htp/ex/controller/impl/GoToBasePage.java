@@ -23,7 +23,8 @@ public class GoToBasePage implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
+		System.out.println("execute GoToBasePage");
 		List<News> latestNews;
 		try {
 			latestNews = newsService.latestList(5);

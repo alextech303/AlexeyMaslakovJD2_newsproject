@@ -13,14 +13,14 @@
 <title>locale.linkname.headertitle <!-- <bean:message key="locale.linkname.headertitle" />
  -->
 </title>
-<fmt:setLocale value="${SessionScope.local }"/>
+<!--   <fmt:setLocale value="${SessionScope.local }"/>
 <fmt:setBundle basename="localization.local" var="loc"/>
 
 <fmt:message bundle="${loc}" key="local.message" var="message" />
 
 <fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
 
-<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />
+<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />-->
 
 <link rel="stylesheet" type="text/css" href="styles/newsStyle.css">
 

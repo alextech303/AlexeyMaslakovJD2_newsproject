@@ -17,38 +17,32 @@ public class UserServiceImpl implements IUserService {
 	private final IUserDao userDAO = DaoProvider.getInstance().getIUserDao();
 
 	private boolean addUser = true;
-	
-	private String roleOfUser="guest";
+
+	private String roleOfUser = "guest";
 
 	@Override
-	public String signIn(String login, String password) throws ServiceException {
+	public String signIn(NewUserInfo user) throws ServiceException {
+		System.out.println("signIn UserServiceImpl");
 
 		try {
-			if (userDAO.logination(login, password)) 
-				roleOfUser = userDAO.getRole(login);
-			
+			if (userDAO.logination(user))
+				roleOfUser = userDAO.getRole(user.getLogin());
 
 		} catch (DaoException | SQLException e) {
 			throw new ServiceException(e);
 		}
-return roleOfUser;
+		return roleOfUser;
 	}
 
 	@Override
 	public boolean registration(NewUserInfo user) throws DaoException, SQLException {
-
+		System.out.println("registration UserServiceImpl");
 		if (userDAO.registration(user)) {
 			return addUser;
 		} else {
 			return !addUser;
 		}
 
-	}
-
-	@Override
-	public boolean logination(String login, String password) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

@@ -13,8 +13,16 @@ public class NewUserInfo {
 		this.login = login;
 		this.password = password;
 		this.email = email;
+		System.out.println("конструктор NewUserInfo1");
 	}
 
+	public NewUserInfo(String login, String password) {
+		super();
+		this.login = login;
+		this.password = password;
+		System.out.println("конструктор NewUserInfo2");
+		
+	}
 	public String getLogin() {
 		return login;
 	}

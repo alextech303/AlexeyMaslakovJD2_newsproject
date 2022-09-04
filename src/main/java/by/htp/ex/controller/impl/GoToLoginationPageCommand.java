@@ -11,9 +11,10 @@ public class GoToLoginationPageCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("execute GoToLoginationPageCommand");
 		
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
+		
 	}
 
 }

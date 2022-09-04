@@ -20,6 +20,7 @@ public class CryptPassword {
 	 
 	 
 	 public CryptPassword(String password) {
+		 System.out.println("CryptPassword");
 		 this.password=password;
 		 byte[] salt = {9,3,4,5,7,5,4};
 
@@ -27,7 +28,7 @@ public class CryptPassword {
 	     try {
 			factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	      try {
@@ -38,7 +39,7 @@ public class CryptPassword {
 		        hashPasswordSTR = hashPassword.toString();
 		     }
 		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

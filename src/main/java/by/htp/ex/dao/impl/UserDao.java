@@ -24,31 +24,41 @@ public class UserDao implements IUserDao {
 
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDao.class);
 	private final UserDataValidation validationUser = ValidationProvider.getInstance().getUserDataVelidation();
-	private boolean checkUserlog = false;
+	private boolean checkUserlogination = false;
 	private boolean checkUserReg = false;
-	@Override
-	public boolean logination(String login, String password) throws DaoException {
-		try {
-			if (validationUser.checkAuthUser(login, password)) {
 
-				checkUserlog = true;
+	Statement st = null;
+	ResultSet rs = null;
+	private boolean authUser = false;
+	private boolean checkUserInBD = true;
+	private String role = "guest";
+	private String sql;
+
+	@Override
+	public boolean logination(NewUserInfo user) throws DaoException {
+		System.out.println("logination UserDao");
+		try {
+			if (validationUser.checkAuthUser(user.getLogin(), user.getPassword())) {
+
+				checkUserlogination = true;
 			} else {
-				LOG.info("Пользователь " + login + " не прошел логинацию!!!");
+				LOG.info("Пользователь " + user.getLogin() + " не прошел логинацию!!!");
 			}
 		} catch (SQLException e) {
 
 			LOG.error(e);
 		}
 
-		return checkUserlog;
+		return checkUserlogination;
 	}
 
 //		
 
 	@Override
 	public boolean registration(NewUserInfo user) throws DaoException, SQLException {
-
+		System.out.println("registration  UserDao");
 		if (validationUser.checkUserInBD(user.getLogin(), user.getEmail())) {
+
 			checkUserReg = true;
 			try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 
@@ -64,19 +74,48 @@ public class UserDao implements IUserDao {
 				ps.executeUpdate();
 
 			} catch (ConnectionPoolException e) {
-				LOG.error("Соединение с БД отсутствует",e);
+				LOG.error("Соединение с БД отсутствует", e);
 			}
 
-		} else 
+		} else
 			return checkUserReg;
-		
+
 		return checkUserReg;
 	}
 
 	@Override
-	public String getRole(String login) throws DaoException {
+	public String getRole(String login) throws DaoException, SQLException {
+		System.out.println("getRole UserDao:");
 
-		return "ddd";
+		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
+			sql = "select roleOfName from roles where id =3";
+			StringBuffer stringBuffer = new StringBuffer("SELECT roles_id FROM users where login='");
+			stringBuffer.append(login);
+			stringBuffer.append("'");
+			String sql2 = stringBuffer.toString();
 
-}
+			st = connect.createStatement();
+			rs = st.executeQuery(sql2);
+			while (rs.next()) {
+				int idRole = (rs.getInt(1));
+				if (idRole == 1) {
+					role = "admin";
+				}
+				if (idRole == 2) {
+					role = "manager";
+				}
+				if (idRole == 3) {
+					role = "user";
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return role;
+
+	}
+
 }

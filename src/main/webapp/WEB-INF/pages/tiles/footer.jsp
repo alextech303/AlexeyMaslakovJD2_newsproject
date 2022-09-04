@@ -1,3 +1,3 @@
 
 
-<center>footer</center>
+<center>alextech@copyright</center>
