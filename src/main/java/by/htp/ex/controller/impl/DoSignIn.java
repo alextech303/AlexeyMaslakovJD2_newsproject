@@ -54,6 +54,14 @@ public class DoSignIn implements Command {
 			
 			
 			switch(role) {
+			
+                case "manager":
+				
+				request.getSession(true).setAttribute("user", "manager");
+				
+				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+				System.out.println("case manager");
+				break;
 		
 			case "user":
 				request.getSession(true).setAttribute("user", "active");
@@ -76,6 +84,8 @@ public class DoSignIn implements Command {
 				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
 				System.out.println("case guest");
 				break;
+				
+				
 			}
 
 			}catch (Exception e) {

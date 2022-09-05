@@ -88,14 +88,13 @@ public class UserDao implements IUserDao {
 		System.out.println("getRole UserDao:");
 
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
-			sql = "select roleOfName from roles where id =3";
 			StringBuffer stringBuffer = new StringBuffer("SELECT roles_id FROM users where login='");
 			stringBuffer.append(login);
 			stringBuffer.append("'");
-			String sql2 = stringBuffer.toString();
+			sql = stringBuffer.toString();
 
 			st = connect.createStatement();
-			rs = st.executeQuery(sql2);
+			rs = st.executeQuery(sql);
 			while (rs.next()) {
 				int idRole = (rs.getInt(1));
 				if (idRole == 1) {

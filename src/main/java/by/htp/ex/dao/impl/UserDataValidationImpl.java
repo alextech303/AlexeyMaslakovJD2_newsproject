@@ -48,40 +48,11 @@ public class UserDataValidationImpl implements UserDataValidation {
 		return authUser;
 	}
 
-//	@Override
-//	public String getRoleUser(String login) throws SQLException {
-//		sqlRequest="SELECT roles_id FROM users where login='";
-//		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
-//
-//			st = connect.createStatement();
-//			StringBuilder stringBuffer = new StringBuilder(sqlRequest);
-//			stringBuffer.append(login).append("';");
-//					
-//			rs = st.executeQuery(stringBuffer.toString());
-//
-//			
-//				
-//				if(rs.getString(6).equals("1")) {
-//					return "admin";
-//				}else { if(rs.getString(6).equals("2")) {
-//					return "manager";
-//				}else if(rs.getString(6).equals("3")) {
-//					return "user";
-//				}
-//			}
-//			
-//			
-//		} catch (SQLException | ConnectionPoolException e) {
-//			LOG.error("Ошибка при подключении к БД",e);
-//		}
-//		return role;
-//	}
-
 	@Override
 	public boolean checkUserInBD(String login, String email) throws SQLException {
 		System.out.println("checkUserInBD UserDataValidationImpl ");
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
-//			 
+			 
 			st = connect.createStatement();
 			rs = st.executeQuery("SELECT * FROM users");
 
