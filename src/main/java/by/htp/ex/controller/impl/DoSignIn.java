@@ -59,7 +59,7 @@ public class DoSignIn implements Command {
 				
 				request.getSession(true).setAttribute("user", "manager");
 				
-				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/manager.jsp").forward(request, response);
 				System.out.println("case manager");
 				break;
 		

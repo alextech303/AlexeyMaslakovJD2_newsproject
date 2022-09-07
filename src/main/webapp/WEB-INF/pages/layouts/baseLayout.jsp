@@ -45,6 +45,11 @@
 				<c:if test="${sessionScope.user eq 'active'}">
 					<c:import url="/WEB-INF/pages/tiles/menu.jsp" />
 				</c:if>
+				
+				<c:if test="${sessionScope.user eq 'manager'}">
+					<c:import url="/WEB-INF/pages/tiles/menu.jsp" />
+					 <c:out value="Welcom Manager!!!" />
+				</c:if>
 			</div>
 
 			<div class="content">
