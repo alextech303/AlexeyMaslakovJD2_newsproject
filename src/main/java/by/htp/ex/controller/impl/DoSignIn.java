@@ -31,8 +31,7 @@ public class DoSignIn implements Command {
 
 	private static final String JSP_LOGIN_PARAM = "login";
 	private static final String JSP_PASSWORD_PARAM = "password";
-	public  NewUserInfo newUserInfo;
-	
+	public NewUserInfo newUserInfo;
 
 	private final IUserService service = ServiceProvider.getInstance().getUserService();
 
@@ -42,55 +41,51 @@ public class DoSignIn implements Command {
 		String login;
 		String password;
 
-		
 		login = request.getParameter(JSP_LOGIN_PARAM);
 		CryptPassword cryptPassword = new CryptPassword(request.getParameter(JSP_PASSWORD_PARAM));
-		password = cryptPassword.toString() ;
+		password = cryptPassword.toString();
 		System.out.println("создаем объект user");
-		newUserInfo = new NewUserInfo(login,password);
-		
-			try {
-				String role = service.signIn(newUserInfo);
-			
-			
-			switch(role) {
-			
-                case "manager":
-				
+		newUserInfo = new NewUserInfo(login, password);
+
+		try {
+			String role = service.signIn(newUserInfo);
+
+			switch (role) {
+
+			case "manager":
 				request.getSession(true).setAttribute("user", "manager");
-				
-				request.getRequestDispatcher("/WEB-INF/jsp/manager.jsp").forward(request, response);
+				request.getSession().setAttribute("user", "active");
+				response.sendRedirect("controller?command=go_to_manager_page");
 				System.out.println("case manager");
 				break;
-		
+
 			case "user":
 				request.getSession(true).setAttribute("user", "active");
 				request.getSession(true).setAttribute("role", role);
 				response.sendRedirect("controller?command=go_to_news_list");
 				System.out.println("case user");
 				break;
-				
+
 			case "admin":
 				request.getSession(true).setAttribute("user", "active");
 				request.getSession(true).setAttribute("role", role);
 				request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp").forward(request, response);
 				System.out.println("case admin");
 				break;
-				
+
 			case "guest":
-				
+
 				request.getSession(true).setAttribute("user", "not active");
 				request.setAttribute("AuthenticationError", "wrong login or password");
 				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
 				System.out.println("case guest");
 				break;
-				
-				
+
 			}
 
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
-}
+	}
 }

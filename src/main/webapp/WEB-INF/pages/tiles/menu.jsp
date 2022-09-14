@@ -12,7 +12,7 @@
 				<li style="padding-left: 15px;"><a href="">news list</a><br />
 				</li>
 
-				<c:if test="${sessionScope.role eq 'admin'}">
+				<c:if test="${requestScope.role eq 'manager'}">
 					<li style="padding-left: 15px;"><a href="">add news </a> <br />
 
 					</li>

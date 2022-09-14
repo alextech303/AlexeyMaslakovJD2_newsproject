@@ -7,7 +7,7 @@ import by.htp.ex.controller.impl.DoRegistration;
 import by.htp.ex.controller.impl.DoSignIn;
 import by.htp.ex.controller.impl.DoSignOut;
 import by.htp.ex.controller.impl.GoToBasePage;
-
+import by.htp.ex.controller.impl.GoToManagerPage;
 import by.htp.ex.controller.impl.GoToNewsList;
 import by.htp.ex.controller.impl.GoToRegistrationPageCommand;
 import by.htp.ex.controller.impl.GoToViewNews;
@@ -24,6 +24,7 @@ public class CommandProvider {
 		commands.put(CommandName.DO_SIGN_OUT, new DoSignOut());
 		commands.put(CommandName.GO_TO_NEWS_LIST, new GoToNewsList());
 		commands.put(CommandName.GO_TO_VIEW_NEWS, new GoToViewNews());
+		commands.put(CommandName.GO_TO_MANAGER_PAGE, new GoToManagerPage());
 		System.out.println("CommandProvider() конструктор");
 	}
 	
