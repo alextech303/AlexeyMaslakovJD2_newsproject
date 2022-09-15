@@ -13,8 +13,10 @@
 				</li>
 
 				<c:if test="${requestScope.role eq 'manager'}">
-					<li style="padding-left: 15px;"><a href="">add news </a> <br />
-
+				   
+					<li style="padding-left: 15px;"> <a href="/news_project/src/main/webapp/WEB-INF/pages/tiles/addNews.jsp">add news </a> <br />
+				
+                    <li style="padding-left: 15px;"><a href="">remove news </a> <br />
 					</li>
 				</c:if>
 			</ul>

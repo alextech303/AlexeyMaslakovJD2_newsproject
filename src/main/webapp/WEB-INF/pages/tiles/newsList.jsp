@@ -27,15 +27,11 @@
 
 						<a href="controller?command=go_to_view_news&id=${news.idNews}">viewlink
 						</a>
-
 						<c:if test="${sessionScope.role eq 'admin'}">
 							<input type="checkbox" name="idNews" value="${news.idNews }" />
 						</c:if>
 					</div>
 				</div>
-
-
-
 			</div>
 		</div>
 

@@ -55,7 +55,7 @@
 				<form action="controller" method="post">
 					<input type="hidden" name="command" value="do_sign_out" /> 
 					<input type="hidden" name="login" value = "${sessionScope.login}" />
-						<input type="submit" value="Sign Out" /><br />
+					<input type="submit" value="Sign Out" /><br />
 				</form>
 			</div>
 

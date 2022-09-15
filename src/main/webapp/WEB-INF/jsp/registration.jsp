@@ -72,7 +72,9 @@ pre {
 	<table width="1080px" border="1" align="center" cellspacing="0">
 
 		<tr>
-			<td id="td1">News Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create Account	</td>
+			<td id="td1">News
+				Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create
+				Account</td>
 
 		</tr>
 		<tr>
@@ -85,11 +87,11 @@ pre {
 					<form name="text" action="controller" method="post" target="_blank">
 						<fieldset>
 							<legend>Регистрация пользователя</legend>
-							<br> <input type="text" name="login" placeholder="Login" value=""><br>
-							<br> <input type="password" name="password"
-								placeholder="Password" value=""> <br>
-							<br> <input type="text" name="email" placeholder="email" value="">
-							<br> <input type="hidden" name="command"
+							<br> <input type="text" name="login" placeholder="Login"
+								value=""><br> <br> <input type="password"
+								name="password" placeholder="Password" value=""> <br>
+							<br> <input type="text" name="email" placeholder="email"
+								value=""> <br> <input type="hidden" name="command"
 								value="do_registration" />
 							<!-- <input type="checkbox" value="на сайте"> Оставаться в системе<br> -->
 							<br> <br> <input type="submit"
@@ -98,13 +100,7 @@ pre {
 						</fieldset>
 					</form>
 
-
-
 				</div>
-
-
-
-
 
 			</td>
 
@@ -118,4 +114,3 @@ pre {
 </body>
 </html>
 
-<!-- width="100"    cellpadding="50"   -->
