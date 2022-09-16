@@ -12,9 +12,19 @@
 				<li style="padding-left: 15px;"><a href="">news list</a><br />
 				</li>
 
-				<c:if test="${requestScope.role eq 'manager'}">
+				    <c:if test="${requestScope.role eq 'manager'}">
 				   
-					<li style="padding-left: 15px;"> <a href="/news_project/src/main/webapp/WEB-INF/pages/tiles/addNews.jsp">add news </a> <br />
+					<li style="padding-left: 15px;"> 
+					<form action="controller" method="post" >
+					<input type="hidden" name="command" value="do_add_news" />
+					
+					<input type="submit" value="add news" />
+					
+					</form>
+					
+					
+					
+					  <br />
 				
                     <li style="padding-left: 15px;"><a href="">remove news </a> <br />
 					</li>

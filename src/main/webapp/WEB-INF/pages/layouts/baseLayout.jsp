@@ -56,9 +56,12 @@
 
 				<c:if test="${not (sessionScope.user eq 'active')}">
 					<c:import url="/WEB-INF/pages/tiles/guestInfo.jsp" />
+					<%System.out.println("class content import guestInfo");%>
 				</c:if>
 				<c:if test="${sessionScope.user eq 'active'}">
+				
 					<c:import url="/WEB-INF/pages/tiles/body.jsp" />
+					<%System.out.println("class content import body");%>
 				</c:if>
 
 
