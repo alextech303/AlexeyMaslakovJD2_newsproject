@@ -35,8 +35,6 @@
 
 					<input type="hidden" name="command" value="go_to_registration_page" />
 
-
-
 					<input type="submit" value="Create Account" /><br />
 			  	</form>
 
@@ -61,18 +59,7 @@
 
 		</c:if>
 		
-		<c:if test="${sessionScope.user eq 'manager'}">
-
-			<div align="right">
-			
-			</div>
-			
-			<div align="left">
-			
 		
-			</div>
-
-		</c:if>
 		
 	</div>
 

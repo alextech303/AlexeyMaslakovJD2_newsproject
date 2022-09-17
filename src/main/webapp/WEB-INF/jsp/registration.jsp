@@ -93,7 +93,7 @@ pre {
 							<br> <input type="text" name="email" placeholder="email"
 								value=""> <br> <input type="hidden" name="command"
 								value="do_registration" />
-							<!-- <input type="checkbox" value="на сайте"> Оставаться в системе<br> -->
+					
 							<br> <br> <input type="submit"
 								value="Зарегистрироваться"><br>
 

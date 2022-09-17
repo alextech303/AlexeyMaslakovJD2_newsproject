@@ -11,7 +11,7 @@
 	<c:import url="/WEB-INF/pages/tiles/viewNews.jsp" />
 </c:if>
 
-<c:if test="${requestScope.addNews eq 'press' }">
+<c:if test="${requestScope.manager eq 'addingNews' }">
 <%System.out.println("body - import addNews ");%>
 	<c:import url="/WEB-INF/pages/tiles/addNews.jsp" />
 </c:if>

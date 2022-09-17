@@ -32,8 +32,8 @@ public final class ConnectionPool {
 	
 	private static final ConnectionPool instance = new ConnectionPool();
 	
-	private BlockingQueue<Connection> connectionQueue; // очередь свободных соединений
-	private BlockingQueue<Connection> givenAwayConQueue; // очередь отданных  соединений
+	private BlockingQueue<Connection> connectionQueue; 
+	private BlockingQueue<Connection> givenAwayConQueue; 
 
 	
 	private String driverName;

@@ -1,35 +1,55 @@
 package by.htp.ex.controller.impl;
 
 import java.io.IOException;
-import java.util.Enumeration;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import by.htp.ex.bean.CryptPassword;
+import by.htp.ex.bean.NewUserInfo;
+import by.htp.ex.bean.News;
 import by.htp.ex.controller.Command;
-import jakarta.servlet.ServletContext;
+import by.htp.ex.dao.DaoException;
+import by.htp.ex.service.INewsService;
+import by.htp.ex.service.IUserService;
+import by.htp.ex.service.ServiceException;
+import by.htp.ex.service.ServiceProvider;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-public class DoAddNews implements Command{
-	
+public class DoAddNews implements Command {
+	private final INewsService service = ServiceProvider.getInstance().getNewsService();
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.controller.impl.DoAddNews.class);
+
+	private static final String JSP_TITLE_PARAM = "title";
+	private static final String JSP_DATE_PARAM = "date";
+	private static final String JSP_BRIEF_PARAM = "brief";
+	private static final String JSP_CONTENT_PARAM = "content";
+	public News newNews;
+
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("addNews", "press");
-		request.setAttribute("user", "manager");
-		request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
-		System.out.println("execute DoAddNews");
-		
-		System.out.println("-------");
-		
-		HttpSession session = request.getSession();
-		Enumeration<String> sessionParams = session.getAttributeNames();
-		while (sessionParams.hasMoreElements()) {
 			
-		}
+		LocalDate ldate = LocalDate.now();
+		System.out.println("Date now - - - -"+ldate.toString());
 		
-		
-		System.out.println("-------");
-		
-		
+			System.out.println("execute DoAddNews");
+			String title;
+			String date;
+			String brief;
+			String content;
+									
+			title = request.getParameter(JSP_TITLE_PARAM);
+			
+			date = request.getParameter(JSP_DATE_PARAM);
+			brief = request.getParameter(JSP_BRIEF_PARAM);
+			content = request.getParameter(JSP_CONTENT_PARAM);
+			
+			
+			
+
 	}
 }
