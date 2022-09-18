@@ -24,7 +24,15 @@
 			<ul style="list-style-image: url(images/img.jpg); text-align: left;">
 
 
-				<li style="padding-left: 15px;"><a href="">news list</a><br />
+				<li style="padding-left: 15px;">
+				
+				
+				
+			<form action="controller" method="post">
+							<input type="hidden" name="command" value="go_to_news_list" /> <input
+								type="submit" value="news list" />
+
+						</form> <br />
 
 
 				</li>

@@ -12,6 +12,7 @@ import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.bean.News;
 import by.htp.ex.controller.Command;
 import by.htp.ex.dao.DaoException;
+import by.htp.ex.dao.NewsDAOException;
 import by.htp.ex.service.INewsService;
 import by.htp.ex.service.IUserService;
 import by.htp.ex.service.ServiceException;
@@ -32,24 +33,39 @@ public class DoAddNews implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		LocalDate ldate = LocalDate.now();
-		System.out.println("Date now - - - -"+ldate.toString());
-		
-			System.out.println("execute DoAddNews");
-			String title;
-			String date;
-			String brief;
-			String content;
-									
-			title = request.getParameter(JSP_TITLE_PARAM);
-			
-			date = request.getParameter(JSP_DATE_PARAM);
-			brief = request.getParameter(JSP_BRIEF_PARAM);
-			content = request.getParameter(JSP_CONTENT_PARAM);
-			
-			
-			
+
+		System.out.println("execute DoAddNews");
+
+		String title;
+		String date;
+		String brief;
+		String content;
+
+		title = request.getParameter(JSP_TITLE_PARAM);
+
+		date = request.getParameter(JSP_DATE_PARAM);
+		brief = request.getParameter(JSP_BRIEF_PARAM);
+		content = request.getParameter(JSP_CONTENT_PARAM);
+		newNews = new News(title, brief, content, date);
+
+		try {
+			if (service.save(newNews)) {
+				request.getSession(true).setAttribute("manager", "addNews");
+				response.sendRedirect("controller?command=go_to_manager_page");
+				LOG.info("Новость успешно добавлена менеджером");
+
+			}
+			LOG.info("Новость успешно добавлена менеджером");
+		} catch (NewsDAOException e) {
+			LOG.debug(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			LOG.debug(e);
+			e.printStackTrace();
+		} catch (DaoException e) {
+			LOG.debug(e);
+			e.printStackTrace();
+		}
 
 	}
 }

@@ -1,8 +1,12 @@
 package by.htp.ex.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +20,40 @@ import by.htp.ex.dao.NewsDAOException;
 import by.htp.ex.dao.poolConnection.ConnectionPool;
 import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 
-public class NewsDao implements INewsDao {
-	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.NewsDao.class);
-
-
+public class NewsDaoImpl implements INewsDao {
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.NewsDaoImpl.class);
+	private boolean addNews = true;
+	
+	private Statement st = null;
+	private ResultSet rs = null;
+	private List<News> listOfNews = new ArrayList<News>();
 	@Override
 	public List<News> getList() throws NewsDAOException {
-		List<News> result = new ArrayList<News>();
+		
+		System.out.println("getList NewsDaoImpl");
+		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
+			 
+			st = connect.createStatement();
+			rs = st.executeQuery("SELECT * FROM news");
 
+			while (rs.next()) {
+        Integer idnews = rs.getInt(1);
+		String title = 	rs.getString(2); 
+		String brief = 	rs.getString(3); 
+		String content = rs.getString(4);
+		String date = rs.getString(5);
+	
+		listOfNews.add(new News(idnews,title,brief,content,date));
+					
+			}
+			
+			
+		
+	}catch (Exception e) {
+		// TODO: handle exception
+	}
 
-		return result;
+		return listOfNews;
 	}
 
 	@Override
@@ -43,10 +71,10 @@ public class NewsDao implements INewsDao {
 	}
 
 	@Override
-	public int addNews(News news) throws NewsDAOException, SQLException {
+	public boolean addNews(News news) throws NewsDAOException, SQLException {
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 
-			String sql = "INSERT INTO news(tittle,bref,content,date,users_idusers,users_roles_id) VALUES(?,?,?,?,?,?)";
+			String sql = "INSERT INTO news(title,brief,content,date,users_idusers,users_roles_id) VALUES(?,?,?,?,?,?)";
 			PreparedStatement ps = connect.prepareStatement(sql);
 
 			ps.setString(1, news.getTitle());
@@ -57,12 +85,12 @@ public class NewsDao implements INewsDao {
 			ps.setInt(6, 3);
 
 			ps.executeUpdate();
-
+System.out.println("addNews In BD");
 		} catch (ConnectionPoolException e) {
 			LOG.error("Соединение с БД отсутствует", e);
 		
 	}
-		return 1;
+		return addNews;
 	}
 		
 		

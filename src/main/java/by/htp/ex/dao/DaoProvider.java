@@ -1,6 +1,6 @@
 package by.htp.ex.dao;
 
-import by.htp.ex.dao.impl.NewsDao;
+import by.htp.ex.dao.impl.NewsDaoImpl;
 import by.htp.ex.dao.impl.UserDao;
 
 public final class DaoProvider{
@@ -10,7 +10,7 @@ public final class DaoProvider{
 
 	private final IUserDao userDAO = new UserDao();
 	
-	private final INewsDao newsDAO = new NewsDao();
+	private final INewsDao newsDAO = new NewsDaoImpl();
 	
 	
 	private DaoProvider() {

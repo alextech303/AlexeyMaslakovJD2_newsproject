@@ -17,8 +17,8 @@ import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 public class UserDataValidationImpl implements UserDataValidation {
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDataValidationImpl.class);
 
-	Statement st = null;
-	ResultSet rs = null;
+	private Statement st = null;
+	private ResultSet rs = null;
 	private boolean authUser = false;
 	private boolean checkUserInBD = true;
 	private String role = "guest";

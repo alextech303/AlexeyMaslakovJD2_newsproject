@@ -62,7 +62,7 @@ public class DoRegistration implements Command {
 			LOG.debug(e);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOG.error("произошла ошибка",e);
+			LOG.error(e);
 		} catch (IOException e) {
 			LOG.error(e);
 		}

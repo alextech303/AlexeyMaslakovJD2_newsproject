@@ -13,22 +13,22 @@
 					<c:out value="${news.title}" />
 				</div>
 				<div class="news-date">
-					<c:out value="${news.newsDate}" />
+					<c:out value="${news.date}" />
 				</div>
 
 				<div class="news-content">
-					<c:out value="${news.briefNews}" />
+					<c:out value="${news.brief}" />
 				</div>
 				<div class="news-link-to-wrapper">
 					<div class="link-position">
-						<c:if test="${sessionScope.role eq 'admin'}">
+						<c:if test="${sessionScope.role eq 'manager'}">
 							<a href="">editlink </a>
 						</c:if>
 
-						<a href="controller?command=go_to_view_news&id=${news.idNews}">viewlink
+						<a href="controller?command=go_to_view_news&id=${news.idnews}">viewlink
 						</a>
-						<c:if test="${sessionScope.role eq 'admin'}">
-							<input type="checkbox" name="idNews" value="${news.idNews }" />
+						<c:if test="${sessionScope.role eq 'manager'}">
+							<input type="checkbox" name="idNews" value="${news.idnews }" />
 						</c:if>
 					</div>
 				</div>

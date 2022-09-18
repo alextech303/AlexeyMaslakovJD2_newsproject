@@ -20,7 +20,7 @@ public class GoToNewsList implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<News> newsList;
 		try {
-			newsList = newsService.list();
+			newsList = newsService.listOfNews();
 			request.setAttribute("news", newsList);
 			request.setAttribute("presentation", "newsList");
 			//request.setAttribute("news", null);

@@ -16,9 +16,13 @@ public interface INewsDao {
 	
 	
 	News fetchById(int id) throws NewsDAOException;
-	int addNews(News news) throws NewsDAOException, SQLException;
+	boolean addNews(News news) throws NewsDAOException, SQLException, DaoException;
 	void updateNews(News news) throws NewsDAOException;
 	void deleteNewses(String[] idNewses)throws NewsDAOException;
+
+
+
+
 	
 	
 }
