@@ -39,17 +39,23 @@
 			<div class="menu">
 
 				<c:if test="${not (sessionScope.user eq 'active')}">
-				    <c:out value="${message}" />
+				<h1>Welcome news channel</h1>
+				   <!-- <c:out value="${message}" /> --> 
 					<%-- <c:import url=""></c:import> --%>
 				</c:if>
+				
+				<c:if test="${sessionScope.user eq 'manager'}">
+				
+					<c:import url="/WEB-INF/pages/tiles/menu.jsp" />
+					 
+				</c:if>
+				
+				
 				<c:if test="${sessionScope.user eq 'active'}">
 					<c:import url="/WEB-INF/pages/tiles/menu.jsp" />
 				</c:if>
 				
-				<c:if test="${sessionScope.user eq 'manager'}">
-					<c:import url="/WEB-INF/pages/tiles/menu.jsp" />
-					 <c:out value="Welcom Manager!!!" />
-				</c:if>
+				
 			</div>
 
 			<div class="content">

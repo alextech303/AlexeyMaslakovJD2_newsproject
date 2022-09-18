@@ -23,3 +23,9 @@
 	<c:import url="/WEB-INF/pages/tiles/addNews.jsp" />
 </c:if>
 
+<c:if test="${requestScope.role eq 'manager' }">
+<%System.out.println("body - Welcome manager ");%>
+	<h2  align="center">Welcome Manager!!!</h2>
+	<img src="images/redaktorNews.jpg" width=650px height=370px>
+</c:if>
+

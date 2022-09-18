@@ -23,51 +23,62 @@ import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 public class NewsDaoImpl implements INewsDao {
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.NewsDaoImpl.class);
 	private boolean addNews = true;
-	
+
 	private Statement st = null;
 	private ResultSet rs = null;
 	private List<News> listOfNews = new ArrayList<News>();
+	private String content;
+	private String title;
+	private String brief;
+	private String date;
+
 	@Override
 	public List<News> getList() throws NewsDAOException {
-		
+
 		System.out.println("getList NewsDaoImpl");
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
-			 
+
 			st = connect.createStatement();
 			rs = st.executeQuery("SELECT * FROM news");
 
 			while (rs.next()) {
-        Integer idnews = rs.getInt(1);
-		String title = 	rs.getString(2); 
-		String brief = 	rs.getString(3); 
-		String content = rs.getString(4);
-		String date = rs.getString(5);
-	
-		listOfNews.add(new News(idnews,title,brief,content,date));
-					
+				Integer idnews = rs.getInt(1);
+				String title = rs.getString(2);
+				String brief = rs.getString(3);
+				String content = rs.getString(4);
+				String date = rs.getString(5);
+
+				listOfNews.add(new News(idnews, title, brief, content, date));
+
 			}
-			
-			
-		
-	}catch (Exception e) {
-		// TODO: handle exception
-	}
+
+		} catch (Exception e) {
+			LOG.error(e);
+		}
 
 		return listOfNews;
 	}
 
 	@Override
-	public List<News> getLatestsList(int count) throws NewsDAOException {
-		List<News> result = new ArrayList<News>();
+	public News fetchById(int idnews) throws NewsDAOException {
+		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
+			StringBuffer stringBuffer = new StringBuffer("SELECT * FROM news WHERE idnews=");
+			stringBuffer.append(String.valueOf(idnews));
+			String sql = stringBuffer.toString();
+			st = connect.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				title = rs.getString(2);
+				brief = rs.getString(3);
+				content = rs.getString(4);
+				date = rs.getString(5);
+			}
 
-		
-		
-		return result;
-	}
+		} catch (Exception e) {
+			LOG.error(e);
 
-	@Override
-	public News fetchById(int id) throws NewsDAOException {
-		return new News( "title1", "brief1brief1brief1brief1brief1brief1brief1", "contect1", "2022-10-10");
+		}
+		return new News(title, brief, content, date);
 	}
 
 	@Override
@@ -80,34 +91,36 @@ public class NewsDaoImpl implements INewsDao {
 			ps.setString(1, news.getTitle());
 			ps.setString(2, news.getBrief());
 			ps.setString(3, news.getContent());
-			ps.setObject(4, news.getDate());
+			ps.setString(4, news.getDate());
 			ps.setInt(5, 3);
 			ps.setInt(6, 3);
 
 			ps.executeUpdate();
-System.out.println("addNews In BD");
+			System.out.println("addNews In BD");
 		} catch (ConnectionPoolException e) {
 			LOG.error("Соединение с БД отсутствует", e);
-		
-	}
+
+		}
 		return addNews;
 	}
-		
-		
 
 	@Override
 	public void updateNews(News news) throws NewsDAOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteNewses(String[] idNewses) throws NewsDAOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	
-	
+	@Override
+	public List<News> getLatestsList(int count) throws NewsDAOException {
+		List<News> result = new ArrayList<News>();
+
+		return result;
+	}
+
 }

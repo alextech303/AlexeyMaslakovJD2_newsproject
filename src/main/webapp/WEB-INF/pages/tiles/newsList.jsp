@@ -21,11 +21,12 @@
 				</div>
 				<div class="news-link-to-wrapper">
 					<div class="link-position">
+					jjj
 						<c:if test="${sessionScope.role eq 'manager'}">
 							<a href="">editlink </a>
 						</c:if>
 
-						<a href="controller?command=go_to_view_news&id=${news.idnews}">viewlink
+						<a href="controller?command=go_to_view_news&idnews=${news.idnews}">viewlink
 						</a>
 						<c:if test="${sessionScope.role eq 'manager'}">
 							<input type="checkbox" name="idNews" value="${news.idnews }" />

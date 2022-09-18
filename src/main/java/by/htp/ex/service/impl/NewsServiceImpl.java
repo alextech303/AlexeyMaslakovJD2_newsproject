@@ -42,7 +42,7 @@ public class NewsServiceImpl implements INewsService {
 		}
 		return saveNews;
 	}
-	
+
 	@Override
 	public List<News> listOfNews() throws ServiceException {
 		try {
@@ -50,20 +50,6 @@ public class NewsServiceImpl implements INewsService {
 		} catch (NewsDAOException e) {
 			throw new ServiceException(e);
 		}
-	}
-
-	
-
-	@Override
-	public void find() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -76,11 +62,10 @@ public class NewsServiceImpl implements INewsService {
 		}
 	}
 
-	
 	@Override
-	public News findById(int id) throws ServiceException {
+	public News findById(int idnews) throws ServiceException {
 		try {
-			return newsDAO.fetchById(id);
+			return newsDAO.fetchById(idnews);
 		} catch (NewsDAOException e) {
 			throw new ServiceException(e);
 		}
@@ -90,6 +75,18 @@ public class NewsServiceImpl implements INewsService {
 	public boolean list() throws ServiceException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void find() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

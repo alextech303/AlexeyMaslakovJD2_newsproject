@@ -25,14 +25,14 @@
 
 
 				<li style="padding-left: 15px;">
-				
-				
-				
-			<form action="controller" method="post">
-							<input type="hidden" name="command" value="go_to_news_list" /> <input
-								type="submit" value="news list" />
 
-						</form> <br />
+
+
+					<form action="controller" method="post">
+						<input type="hidden" name="command" value="go_to_news_list" /> <input
+							type="submit" value="news list" />
+
+					</form> <br />
 
 
 				</li>
@@ -41,11 +41,11 @@
 
 					<li style="padding-left: 15px;">
 						<form action="controller" method="post">
-							<input type="hidden" name="command" value="go_to_add_newspage" /> <input
-								type="submit" value="add news" />
+							<input type="hidden" name="command" value="go_to_add_newspage" />
+							<input type="submit" value="add news" />
 
 						</form> <br />
-					<li style="padding-left: 15px;"><a href="">remove news </a> <br />
+
 					</li>
 				</c:if>
 

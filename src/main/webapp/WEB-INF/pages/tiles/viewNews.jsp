@@ -17,13 +17,13 @@
 			<td class="space_around_title_text">News Date</td>
 
 			<td class="space_around_view_text"><div class="word-breaker">
-					<c:out value="${requestScope.news.newsDate }" />
+					<c:out value="${requestScope.news.date }" />
 				</div></td>
 		</tr>
 		<tr>
 			<td class="space_around_title_text">Brief</td>
 			<td class="space_around_view_text"><div class="word-breaker">
-					<c:out value="${requestScope.news.briefNews }" />
+					<c:out value="${requestScope.news.brief}" />
 				</div></td>
 		</tr>
 		<tr>
@@ -36,11 +36,11 @@
 </div>
 
 
-<c:if test="${sessionScope.role eq 'admin'}">
+<c:if test="${sessionScope.role eq 'manager'}">
 	<div class="first-view-button">
 		<form action="controller" method="post">
 			<input type="hidden" name="command" value="edit" /> <input
-				type="hidden" name="id" value="${news.idNews}" /> <input
+				type="hidden" name="id" value="${news.idnews}" /> <input
 				type="submit" value="Edit" />
 		</form>
 	</div>
@@ -48,7 +48,7 @@
 	<div class="second-view-button">
 		<form action="controller" method="post">
 			<input type="hidden" name="command" value="delete" /> <input
-				type="hidden" name="id" value="${news.idNews}" /> <input
+				type="hidden" name="id" value="${news.idnews}" /> <input
 				type="submit" value="Delete" />
 		</form>
 	</div>
