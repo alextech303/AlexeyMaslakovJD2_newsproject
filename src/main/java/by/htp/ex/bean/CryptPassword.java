@@ -1,4 +1,5 @@
 package by.htp.ex.bean;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
@@ -8,7 +9,8 @@ import java.util.Objects;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public class CryptPassword {
+public class CryptPassword implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	 StringBuilder hashPassword;
 	 SecretKeyFactory factory;

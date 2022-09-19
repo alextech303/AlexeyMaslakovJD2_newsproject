@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.htp.ex.dao.poolConnection.ConnectionPool;
 import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 import jakarta.servlet.ServletConfig;
@@ -14,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 public class FrontController extends HttpServlet {
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.controller. FrontController.class);
 	private static final long serialVersionUID = 1L;
 	
 	private final CommandProvider provider = new CommandProvider();
@@ -29,8 +33,8 @@ public class FrontController extends HttpServlet {
 			ConnectionPool.getInstance().takeConnection();
 
 		} catch (ConnectionPoolException e) {
+			LOG.error(e);
 			
-			e.printStackTrace();
 		}
     }
     
