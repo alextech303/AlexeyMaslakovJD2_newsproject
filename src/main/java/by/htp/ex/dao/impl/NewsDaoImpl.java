@@ -54,6 +54,7 @@ public class NewsDaoImpl implements INewsDao {
 
 		} catch (Exception e) {
 			LOG.error(e);
+			throw new NewsDAOException(e);
 		}
 
 		return listOfNews;
@@ -76,6 +77,7 @@ public class NewsDaoImpl implements INewsDao {
 
 		} catch (Exception e) {
 			LOG.error(e);
+			throw new NewsDAOException(e);
 
 		}
 		return new News(title, brief, content, date);
@@ -99,28 +101,10 @@ public class NewsDaoImpl implements INewsDao {
 			System.out.println("addNews In BD");
 		} catch (ConnectionPoolException e) {
 			LOG.error("Соединение с БД отсутствует", e);
+			throw new NewsDAOException(e);
 
 		}
 		return addNews;
-	}
-
-	@Override
-	public void updateNews(News news) throws NewsDAOException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteNewses(String[] idNewses) throws NewsDAOException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<News> getLatestsList(int count) throws NewsDAOException {
-		List<News> result = new ArrayList<News>();
-
-		return result;
 	}
 
 }

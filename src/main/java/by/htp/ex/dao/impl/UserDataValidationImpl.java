@@ -25,7 +25,7 @@ public class UserDataValidationImpl implements UserDataValidation {
 	private String sqlRequest;
 
 	@Override
-	public boolean checkAuthUser(String login, String password) {
+	public boolean checkAuthUser(String login, String password) throws DaoException {
 		System.out.println("checkAuthUser UserDataValidationImpl ");
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 //			 
@@ -42,17 +42,17 @@ public class UserDataValidationImpl implements UserDataValidation {
 			}
 		} catch (SQLException | ConnectionPoolException e) {
 			LOG.error("Ошибка соединения с БД", e);
-			e.printStackTrace();
+			throw new DaoException(e);
 
 		}
 		return authUser;
 	}
 
 	@Override
-	public boolean checkUserInBD(String login, String email) throws SQLException {
+	public boolean checkUserInBD(String login, String email) throws DaoException {
 		System.out.println("checkUserInBD UserDataValidationImpl ");
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
-			 
+
 			st = connect.createStatement();
 			rs = st.executeQuery("SELECT * FROM users");
 
@@ -62,13 +62,14 @@ public class UserDataValidationImpl implements UserDataValidation {
 					checkUserInBD = false;
 					if ((login).equals(rs.getString(2))) {
 						LOG.debug("пользователь не прошел регистрацию");
-						new DaoException("В базе пользователь с таким логином " + login
+						throw new DaoException("В базе пользователь с таким логином " + login
 								+ " существует - используйте другой логин");
+
 					}
 
 					if (rs.getString(4).equals(email)) {
 						LOG.debug("пользователь не прошел регистрацию");
-						new DaoException("В базе пользователь с таким email " + email
+						throw new DaoException("В базе пользователь с таким email " + email
 								+ " существует - используйте другой email");
 					}
 				}
@@ -76,6 +77,7 @@ public class UserDataValidationImpl implements UserDataValidation {
 
 		} catch (SQLException | ConnectionPoolException e) {
 			LOG.error("Ошибка соединения с базой данных", e);
+			throw new DaoException(e);
 
 		}
 		return checkUserInBD;

@@ -2,6 +2,9 @@ package by.htp.ex.service.impl;
 
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.DaoProvider;
@@ -13,6 +16,7 @@ import by.htp.ex.service.ServiceException;
 import by.htp.ex.service.IUserService;
 
 public class UserServiceImpl implements IUserService {
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.service.impl.UserServiceImpl.class);
 
 	private final IUserDao userDAO = DaoProvider.getInstance().getIUserDao();
 
@@ -22,13 +26,13 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public String signIn(NewUserInfo user) throws ServiceException {
-		System.out.println("signIn UserServiceImpl");
 
 		try {
 			if (userDAO.logination(user))
 				roleOfUser = userDAO.getRole(user.getLogin());
 
 		} catch (DaoException | SQLException e) {
+			LOG.error(e);
 			throw new ServiceException(e);
 		}
 		return roleOfUser;
@@ -36,13 +40,17 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean registration(NewUserInfo user) throws DaoException, SQLException {
-		System.out.println("registration UserServiceImpl");
-		if (userDAO.registration(user)) {
-			return addUser;
-		} else {
-			return !addUser;
+		try {
+			if (userDAO.registration(user)) {
+				return addUser;
+			} else {
+				return !addUser;
+			}
+
+		} catch (DaoException | SQLException e) {
+			LOG.error(e);
+			throw new DaoException();
 		}
 
 	}
-
 }

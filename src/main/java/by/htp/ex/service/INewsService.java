@@ -9,17 +9,10 @@ import by.htp.ex.dao.NewsDAOException;
 
 public interface INewsService {
 
-	  boolean save(News news) throws NewsDAOException, SQLException, DaoException;
-	  void find();
-	  void update();
-	  
-	  List<News> latestList(int count)  throws ServiceException;
-	  
-	  boolean list()  throws ServiceException;
-	  
-	  News findById(int id) throws ServiceException;
-	  List<News> listOfNews() throws ServiceException;
+	boolean save(News news) throws NewsDAOException, SQLException, DaoException, ServiceException;
 
-	
-	
+	News findById(int id) throws ServiceException;
+
+	List<News> listOfNews() throws ServiceException;
+
 }

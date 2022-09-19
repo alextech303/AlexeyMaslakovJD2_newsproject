@@ -20,7 +20,7 @@ public class NewsServiceImpl implements INewsService {
 	private final INewsDao newsDAO = DaoProvider.getInstance().getNewsDAO();
 
 	@Override
-	public boolean save(News news) {
+	public boolean save(News news) throws NewsDAOException, SQLException, DaoException, ServiceException {
 		try {
 			if (newsDAO.addNews(news)) {
 				saveNews = true;
@@ -28,17 +28,20 @@ public class NewsServiceImpl implements INewsService {
 				throw new ServiceException("News don't save in BD");
 			}
 		} catch (NewsDAOException e) {
-			e.printStackTrace();
+			LOG.error(e);
+			throw new NewsDAOException(e);
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			LOG.error(e);
+			throw new SQLException(e);
 		} catch (DaoException e) {
 
-			e.printStackTrace();
+			LOG.error(e);
+			throw new DaoException();
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			LOG.error(e);
+			throw new ServiceException(e);
 		}
 		return saveNews;
 	}
@@ -48,16 +51,7 @@ public class NewsServiceImpl implements INewsService {
 		try {
 			return newsDAO.getList();
 		} catch (NewsDAOException e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	@Override
-	public List<News> latestList(int count) throws ServiceException {
-
-		try {
-			return newsDAO.getLatestsList(5);
-		} catch (NewsDAOException e) {
+			LOG.error(e);
 			throw new ServiceException(e);
 		}
 	}
@@ -67,26 +61,9 @@ public class NewsServiceImpl implements INewsService {
 		try {
 			return newsDAO.fetchById(idnews);
 		} catch (NewsDAOException e) {
+			LOG.error(e);
 			throw new ServiceException(e);
 		}
-	}
-
-	@Override
-	public boolean list() throws ServiceException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void find() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

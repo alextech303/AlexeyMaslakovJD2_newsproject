@@ -12,4 +12,8 @@ public class NewsDAOException extends Exception {
 		super(message, exception);
 	}
 	
+	public NewsDAOException(Exception message) {
+		super(message);
+	}
+	
 }

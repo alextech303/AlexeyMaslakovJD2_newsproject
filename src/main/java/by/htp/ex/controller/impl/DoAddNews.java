@@ -34,8 +34,6 @@ public class DoAddNews implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("execute DoAddNews");
-
 		String title;
 		String date;
 		String brief;
@@ -64,6 +62,9 @@ public class DoAddNews implements Command {
 			e.printStackTrace();
 		} catch (DaoException e) {
 			LOG.debug(e);
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

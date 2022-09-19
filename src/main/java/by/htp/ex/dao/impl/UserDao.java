@@ -27,8 +27,8 @@ public class UserDao implements IUserDao {
 	private boolean checkUserlogination = false;
 	private boolean checkUserReg = false;
 
-	Statement st = null;
-	ResultSet rs = null;
+	private Statement st = null;
+	private ResultSet rs = null;
 	private boolean authUser = false;
 	private boolean checkUserInBD = true;
 	private String role = "guest";
@@ -45,8 +45,9 @@ public class UserDao implements IUserDao {
 				LOG.info("Пользователь " + user.getLogin() + " не прошел логинацию!!!");
 			}
 		} catch (SQLException e) {
-
 			LOG.error(e);
+			throw new DaoException(e);
+
 		}
 
 		return checkUserlogination;
@@ -75,6 +76,7 @@ public class UserDao implements IUserDao {
 
 			} catch (ConnectionPoolException e) {
 				LOG.error("Соединение с БД отсутствует", e);
+				throw new DaoException(e);
 			}
 
 		} else
@@ -85,7 +87,6 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public String getRole(String login) throws DaoException, SQLException {
-		System.out.println("getRole UserDao:");
 
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 			StringBuffer stringBuffer = new StringBuffer("SELECT roles_id FROM users where login='");
@@ -110,7 +111,9 @@ public class UserDao implements IUserDao {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
+			throw new DaoException(e);
+
 		}
 
 		return role;

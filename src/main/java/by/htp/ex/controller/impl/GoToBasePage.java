@@ -23,21 +23,13 @@ public class GoToBasePage implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		System.out.println("execute GoToBasePage");
 		List<News> latestNews;
-		try {
-			latestNews = newsService.latestList(5);
-//			 request.setAttribute("news", latestNews);
-			
-			request.setAttribute("news", null);
 
-			request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+		request.setAttribute("news", null);
 
-		} catch (ServiceException e) {
-			LOG.error(e);
-			
-		}
+		request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
 
 	}
 
