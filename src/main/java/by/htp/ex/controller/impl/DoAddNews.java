@@ -64,7 +64,7 @@ public class DoAddNews implements Command {
 			LOG.debug(e);
 			e.printStackTrace();
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+			LOG.error(e);
 			e.printStackTrace();
 		}
 

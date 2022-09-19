@@ -11,9 +11,9 @@ public class GoToRegistrationPageCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("execute GoToRegistrationPageCommand");
+
 		request.getRequestDispatcher("WEB-INF/jsp/registration.jsp").forward(request, response);
-		
+
 	}
 
 }

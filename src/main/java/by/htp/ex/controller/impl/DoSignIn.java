@@ -37,7 +37,7 @@ public class DoSignIn implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("execute DoSignIn");
+		
 		String login;
 		String password;
 
@@ -84,7 +84,8 @@ public class DoSignIn implements Command {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			LOG.error(e);
+			e.printStackTrace();
 		}
 
 	}

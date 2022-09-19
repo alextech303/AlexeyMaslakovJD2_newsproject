@@ -25,48 +25,48 @@ public class DoRegistration implements Command {
 	private static final String JSP_PASSWORD_PARAM = "password";
 	private static final String JSP_EMAIL_PARAM = "email";
 	public NewUserInfo newUserInfo;
-	
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("execute DoRegistration");
+
 		String login;
 		String password;
 		String email;
-		
+
 		CryptPassword cryptPassword = new CryptPassword(request.getParameter(JSP_PASSWORD_PARAM));
-		
+
 		login = request.getParameter(JSP_LOGIN_PARAM);
-		
-		password = cryptPassword.toString() ;
+
+		password = cryptPassword.toString();
 
 		email = request.getParameter(JSP_EMAIL_PARAM);
-		
-		newUserInfo = new NewUserInfo(login,password,email);
+
+		newUserInfo = new NewUserInfo(login, password, email);
 		try {
-			if(service.registration(newUserInfo)) {
-				
-				request.getSession(true).setAttribute("user","active");
-				request.getSession().setAttribute("login",login);
+			if (service.registration(newUserInfo)) {
+
+				request.getSession(true).setAttribute("user", "active");
+				request.getSession().setAttribute("login", login);
 				response.sendRedirect("controller?command=go_to_news_list");
-				LOG.info("Пользователь  "+newUserInfo.getLogin()+" успешно зарегистрирован!!!");
-			}else {
-				LOG.info("Пользователь "+newUserInfo.getLogin()+"не прошел регистрацию!!!");
-				request.getSession(true).setAttribute("user","not active");
+				LOG.info("Пользователь  " + newUserInfo.getLogin() + " успешно зарегистрирован!!!");
+			} else {
+				LOG.info("Пользователь " + newUserInfo.getLogin() + "не прошел регистрацию!!!");
+				request.getSession(true).setAttribute("user", "not active");
 				response.sendRedirect("controller?command=go_to_base_page");
-				
+
 			}
 		} catch (ServiceException e) {
 			LOG.debug(e);
-			
+
 		} catch (DaoException e) {
 			LOG.debug(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			LOG.error(e);
+
 		} catch (IOException e) {
 			LOG.error(e);
 		}
-		
+
 	}
 
 }

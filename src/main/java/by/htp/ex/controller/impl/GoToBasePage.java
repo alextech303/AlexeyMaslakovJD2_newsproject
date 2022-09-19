@@ -24,7 +24,6 @@ public class GoToBasePage implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("execute GoToBasePage");
 		List<News> latestNews;
 
 		request.setAttribute("news", null);

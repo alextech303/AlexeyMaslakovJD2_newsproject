@@ -11,18 +11,19 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class DoSignOut implements Command  {
+public class DoSignOut implements Command {
 
 	private final static Logger LOG = LogManager.getLogger(DoSignOut.class);
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("execute DoSignOut ");
+
 		String login = request.getParameter("login");
-		
+
 		request.getSession().setAttribute("user", "not active");
-		LOG.info("Пользователь "+login+" вышел из учетной записи");
+		LOG.info("Пользователь " + login + " вышел из учетной записи");
 		response.sendRedirect("controller?command=go_to_base_page");
-		
+
 	}
 
 }

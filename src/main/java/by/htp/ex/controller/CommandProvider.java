@@ -15,9 +15,9 @@ import by.htp.ex.controller.impl.GoToRegistrationPageCommand;
 import by.htp.ex.controller.impl.GoToViewNews;
 
 public class CommandProvider {
-	
+
 	private Map<CommandName, Command> commands = new HashMap<>();
-	
+
 	public CommandProvider() {
 		commands.put(CommandName.GO_TO_BASE_PAGE, new GoToBasePage());
 		commands.put(CommandName.GO_TO_REGISTRATION_PAGE, new GoToRegistrationPageCommand());
@@ -29,15 +29,14 @@ public class CommandProvider {
 		commands.put(CommandName.GO_TO_MANAGER_PAGE, new GoToManagerPage());
 		commands.put(CommandName.GO_TO_ADD_NEWSPAGE, new GoToAddNewsPage());
 		commands.put(CommandName.DO_ADD_NEWS, new DoAddNews());
-		System.out.println("CommandProvider() конструктор");
+
 	}
-	
-	
+
 	public Command getCommand(String name) {
-		CommandName  commandName = CommandName.valueOf(name.toUpperCase());
+		CommandName commandName = CommandName.valueOf(name.toUpperCase());
 		Command command = commands.get(commandName);
 		return command;
-		
+
 	}
 
 }
