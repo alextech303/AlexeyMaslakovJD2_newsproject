@@ -3,32 +3,30 @@
 
 <fmt:setLocale value="${SessionScope.local }" />
 <fmt:setBundle basename="localization.local" var="loc" />
-<fmt:message bundle="${loc}" key="local.locbutton.name.ru"
-	var="ru_button" />
-<fmt:message bundle="${loc}" key="local.locbutton.name.en"
-	var="en_button" />
+<fmt:message bundle="${loc}" key="local.loc.name.ru" var="ru_button" />
+<fmt:message bundle="${loc}" key="local.loc.name.en" var="en_button" />
 
 
 <div class="wrapper">
-	<div class="newstitle">News management</div>
+	<div class="newstitle">${newsmanagement}</div>
 
 
 	<div class="local-link">
 
 		<div align="right">
-		
-	 	   <a href="controller?command=do_local_change&local=en">${en_button}</a>
+			<form action="controller" method="post">
+				<a href="controller?command=do_local_change&local=en">${en_button}</a>
+				<a href="controller?command=do_local_change&local=ru">${ru_button}</a>
+			</form>
 
-			<a href="controller?command=do_local_change&local=ru">${ru_button}</a><br /><br />
-			
- 
+
 		</div>
 
 		<c:if test="${not (sessionScope.user eq 'active')}">
 
 			<div align="right">
 
- <a href="controller?command=do_local_change&local=en">${en_button}</a>
+
 
 				<form action="controller" method="post">
 

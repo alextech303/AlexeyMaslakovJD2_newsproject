@@ -16,11 +16,12 @@ public class DoLocalChange implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, NewsDAOException {
-
+		
 		String local = request.getParameter("local");
-		HttpSession getSession = request.getSession(true);
-		getSession.setAttribute("local", local);
-
+	
+		request.getSession(true).setAttribute("local", local);
+		response.sendRedirect("controller?command=go_to_base_page");
+		
 	}
 
 }

@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class NewUserInfo implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private String login;
 	private String password;
 	private String email;
 
-	public NewUserInfo()  {
+	public NewUserInfo() {
 	}
 
 	public NewUserInfo(String login, String password, String email) {
@@ -18,7 +18,7 @@ public class NewUserInfo implements Serializable {
 		this.login = login;
 		this.password = password;
 		this.email = email;
-		System.out.println("конструктор NewUserInfo1");
+
 	}
 
 	public NewUserInfo(String login, String password) {
@@ -26,8 +26,9 @@ public class NewUserInfo implements Serializable {
 		this.login = login;
 		this.password = password;
 		System.out.println("конструктор NewUserInfo2");
-		
+
 	}
+
 	public String getLogin() {
 		return login;
 	}
@@ -51,7 +52,7 @@ public class NewUserInfo implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -79,5 +80,4 @@ public class NewUserInfo implements Serializable {
 		return "NewUserInfo [login=" + login + ", password=" + password + ", email=" + email + "]";
 	}
 
-	
 }

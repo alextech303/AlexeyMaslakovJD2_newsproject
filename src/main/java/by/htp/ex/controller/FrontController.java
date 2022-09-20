@@ -57,7 +57,7 @@ public class FrontController extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		request.getSession(true).setAttribute("local","en");
+		
 
 		String commandName = request.getParameter("command");
 
