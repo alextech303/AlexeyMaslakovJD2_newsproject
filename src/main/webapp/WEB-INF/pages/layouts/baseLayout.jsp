@@ -5,22 +5,20 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+   
+   
+<fmt:setLocale value="${SessionScope.local }"/>
+<fmt:setBundle basename="localization.local" var="loc"/>
+<fmt:message bundle="${loc}" key="local.loc.welcome" var="welcome" />
+
+
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="script/validation.js"></script>
-<title>locale.linkname.headertitle <!-- <bean:message key="locale.linkname.headertitle" />
- -->
-</title>
-<!--   <fmt:setLocale value="${SessionScope.local }"/>
-<fmt:setBundle basename="localization.local" var="loc"/>
+<title>News Management </title>
 
-<fmt:message bundle="${loc}" key="local.message" var="message" />
-
-<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_button" />
-
-<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_button" />-->
 
 <link rel="stylesheet" type="text/css" href="styles/newsStyle.css">
 
@@ -39,7 +37,7 @@
 			<div class="menu">
 
 				<c:if test="${not (sessionScope.user eq 'active')}">
-				<h1>Welcome news channel</h1>
+				<center><h1>${welcome}</h1></center>
 				   <!-- <c:out value="${message}" /> --> 
 					<%-- <c:import url=""></c:import> --%>
 				</c:if>

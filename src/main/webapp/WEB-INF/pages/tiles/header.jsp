@@ -16,19 +16,19 @@
 	<div class="local-link">
 
 		<div align="right">
-		<!-- 	<form action="controller" method="post">
+		<p>wdwdwd</p>
+	 	   <a href="controller?command=do_local_change&local=en">${en_button}</a>
 
-				<input type="hidden" name="local" value="en" /> <input
-					type="submit" value="${en_button}" /><br />
-			</form>
- -->
+			<a href="controller?command=do_local_change&local=ru">${ru_button}</a><br /><br />
+			
+ 
 		</div>
 
 		<c:if test="${not (sessionScope.user eq 'active')}">
 
 			<div align="right">
 
-
+ <a href="controller?command=do_local_change&local=en">${en_button}</a>
 
 				<form action="controller" method="post">
 

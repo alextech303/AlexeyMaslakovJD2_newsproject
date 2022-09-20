@@ -5,6 +5,7 @@ import java.util.Map;
 
 import by.htp.ex.controller.impl.GoToAddNewsPage;
 import by.htp.ex.controller.impl.DoAddNews;
+import by.htp.ex.controller.impl.DoLocalChange;
 import by.htp.ex.controller.impl.DoRegistration;
 import by.htp.ex.controller.impl.DoSignIn;
 import by.htp.ex.controller.impl.DoSignOut;
@@ -29,6 +30,7 @@ public class CommandProvider {
 		commands.put(CommandName.GO_TO_MANAGER_PAGE, new GoToManagerPage());
 		commands.put(CommandName.GO_TO_ADD_NEWSPAGE, new GoToAddNewsPage());
 		commands.put(CommandName.DO_ADD_NEWS, new DoAddNews());
+		commands.put(CommandName.DO_LOCAL_CHANGE, new DoLocalChange());
 
 	}
 
