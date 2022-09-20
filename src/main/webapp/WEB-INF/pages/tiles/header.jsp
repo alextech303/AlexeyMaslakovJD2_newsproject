@@ -16,7 +16,7 @@
 	<div class="local-link">
 
 		<div align="right">
-		<p>wdwdwd</p>
+		
 	 	   <a href="controller?command=do_local_change&local=en">${en_button}</a>
 
 			<a href="controller?command=do_local_change&local=ru">${ru_button}</a><br /><br />
