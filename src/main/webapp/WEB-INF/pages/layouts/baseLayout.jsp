@@ -7,11 +7,11 @@
    "http://www.w3.org/TR/html4/loose.dtd">
    
    
-<fmt:setLocale value="${SessionScope.local }"/>
+<!--<fmt:setLocale value="${SessionScope.local }"/>
 <fmt:setBundle basename="localization.local" var="loc"/>
 <fmt:message bundle="${loc}" key="local.loc.welcome" var="welcome" />
 
-
+-->
 
 <html>
 <head>
@@ -37,7 +37,7 @@
 			<div class="menu">
 
 				<c:if test="${not (sessionScope.user eq 'active')}">
-				<center><h1>${welcome}</h1></center>
+				<!--<center><h1>${welcome}</h1></center>-->
 				   <!-- <c:out value="${message}" /> --> 
 					<%-- <c:import url=""></c:import> --%>
 				</c:if>
