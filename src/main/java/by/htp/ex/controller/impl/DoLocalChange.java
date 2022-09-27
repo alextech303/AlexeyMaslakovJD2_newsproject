@@ -23,5 +23,10 @@ public class DoLocalChange implements Command {
 		response.sendRedirect("controller?command=go_to_base_page");
 		
 	}
-
+	
+	
+//	request.getSession(true).setAttribute(ControllerConstant.LOCAL, request.getParameter(ControllerConstant.LOCAL));
+//	response.sendRedirect(ControllerConstant.GO_TO_BASE_PAGE);
+//	public static final String LOCAL = "local";
+//	public static final String GO_TO_BASE_PAGE = "controller?command=go_to_base_page";
 }
