@@ -17,18 +17,13 @@ import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 public class UserDataValidationImpl implements UserDataValidation {
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDataValidationImpl.class);
 
-	private Statement st = null;
-	private ResultSet rs = null;
-	private boolean authUser = false;
-	private boolean checkUserInBD = true;
-	private String role = "guest";
-	private String sqlRequest;
-
 	@Override
 	public boolean checkAuthUser(String login, String password) throws DaoException {
-		System.out.println("checkAuthUser UserDataValidationImpl ");
+		Statement st = null;
+		ResultSet rs = null;
+		boolean authUser = false;
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
-//			 
+
 			st = connect.createStatement();
 			rs = st.executeQuery("SELECT * FROM users");
 
@@ -50,7 +45,9 @@ public class UserDataValidationImpl implements UserDataValidation {
 
 	@Override
 	public boolean checkUserInBD(String login, String email) throws DaoException {
-		System.out.println("checkUserInBD UserDataValidationImpl ");
+		Statement st = null;
+		ResultSet rs = null;
+		boolean checkUserInBD = true;
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 
 			st = connect.createStatement();
