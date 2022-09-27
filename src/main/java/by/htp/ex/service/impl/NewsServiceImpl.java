@@ -15,12 +15,13 @@ import by.htp.ex.service.INewsService;
 import by.htp.ex.service.ServiceException;
 
 public class NewsServiceImpl implements INewsService {
-	private boolean saveNews = false;
+
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.service.impl.NewsServiceImpl.class);
 	private final INewsDao newsDAO = DaoProvider.getInstance().getNewsDAO();
 
 	@Override
 	public boolean save(News news) throws NewsDAOException, SQLException, DaoException, ServiceException {
+		boolean saveNews = false;
 		try {
 			if (newsDAO.addNews(news)) {
 				saveNews = true;
