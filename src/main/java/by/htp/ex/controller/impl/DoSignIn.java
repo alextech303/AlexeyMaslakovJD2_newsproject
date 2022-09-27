@@ -31,13 +31,13 @@ public class DoSignIn implements Command {
 
 	private static final String JSP_LOGIN_PARAM = "login";
 	private static final String JSP_PASSWORD_PARAM = "password";
-	public NewUserInfo newUserInfo;
+	
 
 	private final IUserService service = ServiceProvider.getInstance().getUserService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		NewUserInfo newUserInfo;
 		String login;
 		String password;
 

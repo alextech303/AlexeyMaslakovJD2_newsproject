@@ -29,11 +29,11 @@ public class DoAddNews implements Command {
 	private static final String JSP_DATE_PARAM = "date";
 	private static final String JSP_BRIEF_PARAM = "brief";
 	private static final String JSP_CONTENT_PARAM = "content";
-	public News newNews;
+
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		News newNews;
 		String title;
 		String date;
 		String brief;

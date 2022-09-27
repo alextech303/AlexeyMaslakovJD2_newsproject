@@ -24,11 +24,11 @@ public class DoRegistration implements Command {
 	private static final String JSP_LOGIN_PARAM = "login";
 	private static final String JSP_PASSWORD_PARAM = "password";
 	private static final String JSP_EMAIL_PARAM = "email";
-	public NewUserInfo newUserInfo;
+	
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		NewUserInfo newUserInfo;
 		String login;
 		String password;
 		String email;

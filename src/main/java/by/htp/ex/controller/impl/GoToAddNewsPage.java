@@ -12,11 +12,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class GoToAddNewsPage implements Command {
-	private String name;
-	private String value;
+	 
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String name;
+		String value;
 		request.setAttribute("manager", "addingNews");
 
 		request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);

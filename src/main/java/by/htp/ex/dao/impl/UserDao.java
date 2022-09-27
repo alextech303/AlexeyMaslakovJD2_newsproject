@@ -24,19 +24,10 @@ public class UserDao implements IUserDao {
 
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.UserDao.class);
 	private final UserDataValidation validationUser = ValidationProvider.getInstance().getUserDataVelidation();
-	private boolean checkUserlogination = false;
-	private boolean checkUserReg = false;
-
-	private Statement st = null;
-	private ResultSet rs = null;
-	private boolean authUser = false;
-	private boolean checkUserInBD = true;
-	private String role = "guest";
-	private String sql;
 
 	@Override
 	public boolean logination(NewUserInfo user) throws DaoException {
-		System.out.println("logination UserDao");
+		boolean checkUserlogination = false;
 		try {
 			if (validationUser.checkAuthUser(user.getLogin(), user.getPassword())) {
 
@@ -53,11 +44,9 @@ public class UserDao implements IUserDao {
 		return checkUserlogination;
 	}
 
-//		
-
 	@Override
 	public boolean registration(NewUserInfo user) throws DaoException, SQLException {
-		System.out.println("registration  UserDao");
+		boolean checkUserReg = false;
 		if (validationUser.checkUserInBD(user.getLogin(), user.getEmail())) {
 
 			checkUserReg = true;
@@ -87,7 +76,10 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public String getRole(String login) throws DaoException, SQLException {
-
+		ResultSet rs = null;
+		Statement st = null;
+		String role = "guest";
+		String sql;
 		try (Connection connect = ConnectionPool.getInstance().takeConnection()) {
 			StringBuffer stringBuffer = new StringBuffer("SELECT roles_id FROM users where login='");
 			stringBuffer.append(login);
