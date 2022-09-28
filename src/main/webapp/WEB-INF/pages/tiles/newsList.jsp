@@ -2,7 +2,7 @@
 
 
 <div class="body-title">
-	<a href="">News >> </a> News List
+	<a href="controller?command=go_to_news_list">News >> </a> News List
 </div>
 
 <form action="" method="post">
@@ -21,14 +21,14 @@
 				</div>
 				<div class="news-link-to-wrapper">
 					<div class="link-position">
-					jjj
-						<c:if test="${sessionScope.role eq 'manager'}">
-							<a href="">editlink </a>
+					
+						<c:if test="${sessionScope.user eq 'manager'}">
+							<a href="w1w1w1w1w">editlink </a>
 						</c:if>
 
 						<a href="controller?command=go_to_view_news&idnews=${news.idnews}">viewlink
 						</a>
-						<c:if test="${sessionScope.role eq 'manager'}">
+						<c:if test="${sessionScope.user eq 'manager'}">
 							<input type="checkbox" name="idNews" value="${news.idnews }" />
 						</c:if>
 					</div>

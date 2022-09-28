@@ -67,7 +67,7 @@ public class FrontController extends HttpServlet {
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException | ServletException | IOException
 				| NewsDAOException e) {
 			LOG.error(e);
-			e.printStackTrace();
+			response.sendRedirect("controller?command=go_to_error_page");
 		}
 
 	}

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="body-title">
-	<a href="">News >> </a> View News
+	<a href="controller?command=go_to_news_list">News >> </a> View News
 </div>
 
 <div class="add-table-margin">
