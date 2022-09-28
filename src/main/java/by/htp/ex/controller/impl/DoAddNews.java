@@ -55,17 +55,17 @@ public class DoAddNews implements Command {
 			}
 			LOG.info("Новость успешно добавлена менеджером");
 		} catch (NewsDAOException e) {
-			LOG.debug(e);
-			e.printStackTrace();
+			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 		} catch (SQLException e) {
-			LOG.debug(e);
-			e.printStackTrace();
+			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 		} catch (DaoException e) {
-			LOG.debug(e);
-			e.printStackTrace();
+			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 		} catch (ServiceException e) {
 			LOG.error(e);
-			e.printStackTrace();
+			response.sendRedirect("controller?command=go_to_error_page");
 		}
 
 	}

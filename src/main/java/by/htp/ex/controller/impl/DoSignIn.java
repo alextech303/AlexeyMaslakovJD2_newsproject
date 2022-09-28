@@ -44,7 +44,7 @@ public class DoSignIn implements Command {
 		login = request.getParameter(JSP_LOGIN_PARAM);
 		CryptPassword cryptPassword = new CryptPassword(request.getParameter(JSP_PASSWORD_PARAM));
 		password = cryptPassword.toString();
-		System.out.println("создаем объект user");
+		
 		newUserInfo = new NewUserInfo(login, password);
 
 		try {
@@ -56,21 +56,20 @@ public class DoSignIn implements Command {
 				request.getSession(true).setAttribute("user", "manager");
 				request.getSession().setAttribute("user", "active");
 				response.sendRedirect("controller?command=go_to_manager_page");
-				System.out.println("case manager");
 				break;
 
 			case "user":
 				request.getSession(true).setAttribute("user", "active");
 				request.getSession(true).setAttribute("role", role);
 				response.sendRedirect("controller?command=go_to_news_list");
-				System.out.println("case user");
+				
 				break;
 
 			case "admin":
 				request.getSession(true).setAttribute("user", "active");
 				request.getSession(true).setAttribute("role", role);
 				request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp").forward(request, response);
-				System.out.println("case admin");
+			
 				break;
 
 			case "guest":
@@ -78,14 +77,14 @@ public class DoSignIn implements Command {
 				request.getSession(true).setAttribute("user", "not active");
 				request.setAttribute("AuthenticationError", "wrong login or password");
 				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
-				System.out.println("case guest");
+				
 				break;
 
 			}
 
 		} catch (Exception e) {
 			LOG.error(e);
-			e.printStackTrace();
+			response.sendRedirect("controller?command=go_to_error_page");
 		}
 
 	}

@@ -42,7 +42,7 @@ public class GoToViewNews implements Command {
 			request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
 		} catch (ServiceException e) {
 			LOG.error(e);
-			e.printStackTrace();
+			response.sendRedirect("controller?command=go_to_error_page");
 		}
 
 	}

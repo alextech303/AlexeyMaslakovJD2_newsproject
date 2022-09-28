@@ -20,7 +20,7 @@ public class GoToAddNewsPage implements Command {
 		request.setAttribute("manager", "addingNews");
 
 		request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
-		System.out.println("execute GoToAddNewsPage");
+		
 
 	}
 }

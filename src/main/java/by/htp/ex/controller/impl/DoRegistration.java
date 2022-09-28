@@ -56,15 +56,19 @@ public class DoRegistration implements Command {
 
 			}
 		} catch (ServiceException e) {
-			LOG.debug(e);
+			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 
 		} catch (DaoException e) {
-			LOG.debug(e);
+			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 		} catch (SQLException e) {
 			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 
 		} catch (IOException e) {
 			LOG.error(e);
+			response.sendRedirect("controller?command=go_to_error_page");
 		}
 
 	}
