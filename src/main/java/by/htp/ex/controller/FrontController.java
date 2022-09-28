@@ -8,8 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.htp.ex.dao.NewsDAOException;
-import by.htp.ex.dao.poolConnection.ConnectionPool;
-import by.htp.ex.dao.poolConnection.ConnectionPoolException;
+import by.htp.ex.dao.poolconnection.ConnectionPool;
+import by.htp.ex.dao.poolconnection.ConnectionPoolException;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

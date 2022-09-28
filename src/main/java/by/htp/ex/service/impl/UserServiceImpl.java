@@ -20,13 +20,9 @@ public class UserServiceImpl implements IUserService {
 
 	private final IUserDao userDAO = DaoProvider.getInstance().getIUserDao();
 
-	private boolean addUser = true;
-
-	private String roleOfUser = "guest";
-
 	@Override
 	public String signIn(NewUserInfo user) throws ServiceException {
-
+		String roleOfUser = "guest";
 		try {
 			if (userDAO.logination(user))
 				roleOfUser = userDAO.getRole(user.getLogin());
@@ -40,6 +36,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean registration(NewUserInfo user) throws DaoException, SQLException {
+		boolean addUser = true;
 		try {
 			if (userDAO.registration(user)) {
 				return addUser;

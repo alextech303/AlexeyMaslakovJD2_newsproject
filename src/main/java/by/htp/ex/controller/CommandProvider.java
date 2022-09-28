@@ -10,6 +10,7 @@ import by.htp.ex.controller.impl.DoRegistration;
 import by.htp.ex.controller.impl.DoSignIn;
 import by.htp.ex.controller.impl.DoSignOut;
 import by.htp.ex.controller.impl.GoToBasePage;
+import by.htp.ex.controller.impl.GoToErrorPage;
 import by.htp.ex.controller.impl.GoToManagerPage;
 import by.htp.ex.controller.impl.GoToNewsList;
 import by.htp.ex.controller.impl.GoToRegistrationPageCommand;
@@ -31,6 +32,7 @@ public class CommandProvider {
 		commands.put(CommandName.GO_TO_ADD_NEWSPAGE, new GoToAddNewsPage());
 		commands.put(CommandName.DO_ADD_NEWS, new DoAddNews());
 		commands.put(CommandName.DO_LOCAL_CHANGE, new DoLocalChange());
+		commands.put(CommandName.GO_TO_ERROR_PAGE, new GoToErrorPage());
 
 	}
 
