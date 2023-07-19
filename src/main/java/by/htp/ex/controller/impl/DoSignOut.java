@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.htp.ex.controller.Command;
-import by.htp.ex.dao.poolconnection.ConnectionPool;
+import by.htp.ex.dao.poolConnection.ConnectionPool;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

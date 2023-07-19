@@ -17,8 +17,8 @@ import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.IUserDao;
 import by.htp.ex.dao.UserDataValidation;
 import by.htp.ex.dao.ValidationProvider;
-import by.htp.ex.dao.poolconnection.ConnectionPool;
-import by.htp.ex.dao.poolconnection.ConnectionPoolException;
+import by.htp.ex.dao.poolConnection.ConnectionPool;
+import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 
 public class UserDao implements IUserDao {
 

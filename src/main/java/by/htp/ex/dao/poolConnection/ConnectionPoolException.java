@@ -1,4 +1,4 @@
-package by.htp.ex.dao.poolconnection;
+package by.htp.ex.dao.poolConnection;
 
 public class ConnectionPoolException extends Exception {
 	

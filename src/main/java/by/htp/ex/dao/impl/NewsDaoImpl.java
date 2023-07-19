@@ -13,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 import by.htp.ex.bean.News;
 import by.htp.ex.dao.INewsDao;
 import by.htp.ex.dao.NewsDAOException;
-import by.htp.ex.dao.poolconnection.ConnectionPool;
-import by.htp.ex.dao.poolconnection.ConnectionPoolException;
+import by.htp.ex.dao.poolConnection.ConnectionPool;
+import by.htp.ex.dao.poolConnection.ConnectionPoolException;
 
 public class NewsDaoImpl implements INewsDao {
 	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.impl.NewsDaoImpl.class);

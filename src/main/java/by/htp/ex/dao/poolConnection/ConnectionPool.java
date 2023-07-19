@@ -1,4 +1,4 @@
-package by.htp.ex.dao.poolconnection;
+package by.htp.ex.dao.poolConnection;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -36,7 +36,7 @@ import com.mysql.cj.log.Log;
 public final class ConnectionPool {
 
 	private static final ConnectionPool instance = new ConnectionPool();
-	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.poolconnection.ConnectionPool.class);
+	private final static Logger LOG = LogManager.getLogger(by.htp.ex.dao.poolConnection.ConnectionPool.class);
 
 	private BlockingQueue<Connection> connectionQueue;
 	private BlockingQueue<Connection> givenAwayConQueue;
